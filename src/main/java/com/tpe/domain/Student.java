@@ -1,9 +1,7 @@
 package com.tpe.domain;
 
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.time.LocalDateTime;
 
 @Entity
@@ -11,9 +9,11 @@ import java.time.LocalDateTime;
 public class Student {
 
     @Id
+    @GeneratedValue (strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String firstName;
+    @Column (nullable = false)
+    private String firstName;   // first-name => default name
 
     private String lastName;
 
