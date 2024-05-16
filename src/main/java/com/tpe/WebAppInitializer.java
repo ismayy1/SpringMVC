@@ -8,17 +8,19 @@ import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatche
 // AbstractAnnotationConfig: configurations for dispatcherServlet
 public class WebAppInitializer extends AbstractAnnotationConfigDispatcherServletInitializer {
     @Override
-    protected Class<?>[] getRootConfigClasses() {
+    protected Class<?>[] getRootConfigClasses() {   // to access db: hibernate, JDBC
+        return new Class[] {
+                RootConfig.class
+        };
+    }
+
+    @Override
+    protected Class<?>[] getServletConfigClasses() {    // viewResolver, handlerMapper
         return new Class[0];
     }
 
     @Override
-    protected Class<?>[] getServletConfigClasses() {
-        return new Class[0];
-    }
-
-    @Override
-    protected String[] getServletMappings() {
+    protected String[] getServletMappings() {   // url path for Servlet
         return new String[0];
     }
 }
