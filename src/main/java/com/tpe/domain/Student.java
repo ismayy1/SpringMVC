@@ -15,11 +15,11 @@ public class Student {
     @GeneratedValue (strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotBlank   // from java Validations dependency
+    @NotBlank (message = "firstName can't be blank!")   // from java Validations dependency, " "(blank), ""(empty), and not null values
     @Column (nullable = false)
     private String firstName;   // first-name => default name
 
-    @NotEmpty
+    @NotEmpty   // ""(empty string), null are not accepted
     private String lastName;
 
     @NotNull    // null is not accepted
