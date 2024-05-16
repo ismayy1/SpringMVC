@@ -14,6 +14,7 @@ public class StudentController {
         ModelAndView mav = new ModelAndView();
         mav.addObject("message", "Hello");
         mav.addObject("messagebody", "I am a Student Management System");
+        mav.setViewName("hi");
         return mav;
     }
 
