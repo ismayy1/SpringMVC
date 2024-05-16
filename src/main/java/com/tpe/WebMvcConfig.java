@@ -27,13 +27,11 @@ public class WebMvcConfig implements WebMvcConfigurer {
     // view resolver config, enables us to build Bean inside our jsp file with java code
     @Bean
     public InternalResourceViewResolver resolver () {
-
         InternalResourceViewResolver resolver = new InternalResourceViewResolver();
         resolver.setPrefix("/WEB-INF/views/");
         resolver.setSuffix(".jsp"); // "/WEB-INF/views/hi.jsp"
         // it helps us to run sum java codes inside our jsp file => JavaStandardTagLibrary: to write some basic codes inside JSP
         resolver.setViewClass(JstlView.class);
-
         return resolver;
     }
 }
