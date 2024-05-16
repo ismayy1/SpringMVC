@@ -16,11 +16,15 @@ public class WebAppInitializer extends AbstractAnnotationConfigDispatcherServlet
 
     @Override
     protected Class<?>[] getServletConfigClasses() {    // viewResolver, handlerMapper
-        return new Class[0];
+        return new Class[] {
+                WebMvcConfig.class
+        };
     }
 
     @Override
-    protected String[] getServletMappings() {   // url path for Servlet
-        return new String[0];
+    protected String[] getServletMappings() {   // which url path for Dispatcher Servlet
+        return new String[] {
+                "/"
+        };
     }
 }
