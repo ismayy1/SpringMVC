@@ -23,6 +23,8 @@ public class WebMvcConfig implements WebMvcConfigurer {
                 .setCachePeriod(0); // cache period which should be updated
     }
 
+
+    // view resolver config
     @Bean
     public InternalResourceViewResolver resolver () {
 
