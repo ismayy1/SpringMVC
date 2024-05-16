@@ -21,4 +21,10 @@ public class StudentController {
         return mav;
     }
 
+    @GetMapping ("")    // http://localhost:8080/springMvc/students/ + GET
+    public ModelAndView getStudents () {
+
+        return null;
+    }
+
 }
