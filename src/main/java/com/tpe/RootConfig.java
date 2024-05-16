@@ -24,7 +24,7 @@ public class RootConfig {
 
         LocalSessionFactoryBean sessionFactory = new LocalSessionFactoryBean();
         sessionFactory.setDataSource(dataSource()); // we've created a method in down
-        sessionFactory.setHibernateProperties();
+        sessionFactory.setHibernateProperties(hibernateProperties());
         sessionFactory.setPackagesToScan(new String[]{"com.tpe.domain"});
 
         return sessionFactory;
