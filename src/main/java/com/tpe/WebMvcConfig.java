@@ -24,7 +24,7 @@ public class WebMvcConfig implements WebMvcConfigurer {
     }
 
 
-    // view resolver config
+    // view resolver config, enables us to build Bean inside our jsp file with java code
     @Bean
     public InternalResourceViewResolver resolver () {
 
