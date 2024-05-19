@@ -41,7 +41,7 @@ public class StudentController {
         mav.addObject("studentList", allStudent);
         mav.setViewName("students");
 
-        return null;
+        return mav;
     }
 
 }
