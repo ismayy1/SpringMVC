@@ -29,6 +29,8 @@ public class StudentServiceImplementation implements StudentService {
         Student existingStudent = repository.findById(id)
                 .orElseThrow(() -> new StudentNotFoundException("NO Student with ID: " + id));
         return existingStudent;
+
+        //if there's an exception, handle it or return the student
     }
 
     @Override
