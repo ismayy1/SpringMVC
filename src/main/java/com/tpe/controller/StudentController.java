@@ -1,9 +1,12 @@
 package com.tpe.controller;
 
+import com.tpe.domain.Student;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
+
+import java.util.List;
 
 @Controller // special component to handle requests
 @RequestMapping ("/students") // http://localhost:8080/springMvc/students  => end point should be directed to this requestMapping
@@ -21,8 +24,11 @@ public class StudentController {
         return mav;
     }
 
+    // end point to return all students
     @GetMapping ("")    // http://localhost:8080/springMvc/students/ + GET
     public ModelAndView getStudents () {
+
+        List<Student> allStudent =
 
         return null;
     }
