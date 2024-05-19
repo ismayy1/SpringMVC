@@ -37,6 +37,10 @@ public class StudentController {
 
         List<Student> allStudent = service.listAllStudent();
 
+        ModelAndView mav = new ModelAndView();
+        mav.addObject("studentList", allStudent);
+        mav.setViewName("students");
+
         return null;
     }
 
