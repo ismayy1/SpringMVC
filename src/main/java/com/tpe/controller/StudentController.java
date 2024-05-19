@@ -45,6 +45,7 @@ public class StudentController {
         return mav;
     }
 
+    // method to display studentForm page
     @GetMapping ("/new") // http://localhost:8080/springMvc/students/new + GET
     public String displayForm(@ModelAttribute("student") Student student) {
         return "studentForm";
