@@ -7,6 +7,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Controller;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -43,5 +44,12 @@ public class StudentController {
 
         return mav;
     }
+
+    @GetMapping ("/new") // http://localhost:8080/springMvc/students/new + GET
+    public String displayForm(@ModelAttribute("student") Student student) {
+        return "studentForm";
+    }
+
+//    @GetMapping // http://localhost:8080/springMvc/students + POST
 
 }
