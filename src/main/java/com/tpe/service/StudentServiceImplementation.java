@@ -20,7 +20,7 @@ public class StudentServiceImplementation implements StudentService {
 
     @Override
     public void addOrUpdateStudents(Student student) {
-
+        repository.saveOrUpdate(student);
     }
 
     @Override

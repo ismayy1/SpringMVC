@@ -3,6 +3,7 @@ package com.tpe.repository;
 import com.tpe.domain.Student;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -26,7 +27,14 @@ public class StudentRepositoryImplementation implements StudentRepository {
 
     @Override
     public void saveOrUpdate(Student student) {
+        Session session = sessionFactory.openSession();
+        Transaction tx = session.beginTransaction();
 
+        // Insert info
+        session.saveOrUpdate(student);  // saveOrUpdate(): if student exists, it'll update, else inserts new students
+
+        tx.commit();
+        session.close();
     }
 
     @Override
