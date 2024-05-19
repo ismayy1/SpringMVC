@@ -1,6 +1,7 @@
 package com.tpe.service;
 
 import com.tpe.domain.Student;
+import com.tpe.exception.StudentNotFoundException;
 import com.tpe.repository.StudentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -25,7 +26,9 @@ public class StudentServiceImplementation implements StudentService {
 
     @Override
     public Student findStudentById(Long id) {
-        return null;
+        Student existingStudent = repository.findById(id)
+                .orElseThrow(() -> new StudentNotFoundException("NO Student with ID: " + id));
+        return existingStudent;
     }
 
     @Override

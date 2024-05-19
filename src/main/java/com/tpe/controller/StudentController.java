@@ -63,6 +63,7 @@ public class StudentController {
         return "redirect:/students";    // redirects user to this endPoint http://localhost:8080/springMvc/students
     }
 
+    // method to update existing student
     @GetMapping ("/update") // http://localhost:8080/springMvc/students/update?id=1 + GET
     public ModelAndView displayFormPageToUpdate (@RequestParam ("id") Long id) {
         Student student = service.findStudentById(id);
