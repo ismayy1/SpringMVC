@@ -7,10 +7,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Controller;
 import org.springframework.stereotype.Service;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.validation.Valid;
@@ -64,6 +61,15 @@ public class StudentController {
 
         service.addOrUpdateStudents(student);
         return "redirect:/students";    // redirects user to this endPoint http://localhost:8080/springMvc/students
+    }
+
+    @GetMapping ("/update") // http://localhost:8080/springMvc/students/update?id=1 + GET
+    public ModelAndView displayFormPageToUpdate (@RequestParam ("id") Long id) {
+        Student student = service.findStudentById(id);
+        ModelAndView mav = new ModelAndView();
+        mav.addObject("student", student);
+        mav.setViewName("studentForm");
+        return mav;
     }
 
 }
