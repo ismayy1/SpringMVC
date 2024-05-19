@@ -44,6 +44,10 @@ public class StudentRepositoryImplementation implements StudentRepository {
 
     @Override
     public Optional<Student> findById(Long id) {
-        return Optional.empty();
+        Session session = sessionFactory.openSession();
+        Student student = session.get(Student.class, id);
+        Optional<Student> optionalStudent = Optional.ofNullable(student);
+        session.close();
+        return optionalStudent;
     }
 }
