@@ -56,7 +56,7 @@ public class StudentController {
     @PostMapping ("/saveStudent") // http://localhost:8080/springMvc/students/saveStudent + POST
     public String saveStudent (@ModelAttribute("student") Student student) {
         service.addOrUpdateStudents(student);
-        return "redirect:/students";
+        return "redirect:/students";    // redirects user to this endPoint http://localhost:8080/springMvc/students
     }
 
 }
