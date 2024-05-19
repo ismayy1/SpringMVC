@@ -32,7 +32,7 @@ public class StudentController {
     }
 
     // end point to return all students
-    @GetMapping ("")    // http://localhost:8080/springMvc/students/ + GET
+    @GetMapping // http://localhost:8080/springMvc/students/ + GET
     public ModelAndView getStudents () {
 
         List<Student> allStudent = service.listAllStudent();
