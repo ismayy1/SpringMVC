@@ -6,12 +6,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Controller;
 import org.springframework.stereotype.Service;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @Controller // special component to handle requests
@@ -54,7 +56,12 @@ public class StudentController {
 
     // method to post student to DB
     @PostMapping ("/saveStudent") // http://localhost:8080/springMvc/students/saveStudent + POST
-    public String saveStudent (@ModelAttribute("student") Student student) {
+    public String saveStudent (@Valid @ModelAttribute("student") Student student, BindingResult bindingResult) {
+
+        if (bindingResult.hasErrors()) {
+            return "studentForm";
+        }
+
         service.addOrUpdateStudents(student);
         return "redirect:/students";    // redirects user to this endPoint http://localhost:8080/springMvc/students
     }
