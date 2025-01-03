@@ -8,18 +8,16 @@ import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatche
 public class WebAppInitializer extends AbstractAnnotationConfigDispatcherServletInitializer {
     @Override
     protected Class<?>[] getRootConfigClasses() {
-        return new Class[] {
-                RootConfig.class
-        };
+        return new Class[] { RootConfig.class };
     }
 
     @Override
     protected Class<?>[] getServletConfigClasses() {
-        return new Class[0];
+        return new Class[] { WebMvcConfig.class };
     }
 
-    @Override
+    @Override   // All the requests with incoming URL.
     protected String[] getServletMappings() {
-        return new String[0];
+        return new String[] { "/" };    // -> /students/new/1 -> Still starts with '/', so, it'll be included
     }
 }
