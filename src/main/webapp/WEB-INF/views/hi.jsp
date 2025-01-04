@@ -8,7 +8,6 @@
         <title>hi</title>
     </head>
     <body>
-        <h2>${message}
-        ${messagebody}<h2/>
+        <h2>${message} ${messageBody}<h2/>
     </body>
 </html>
