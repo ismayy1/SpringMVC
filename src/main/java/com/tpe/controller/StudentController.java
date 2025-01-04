@@ -6,6 +6,7 @@ import com.tpe.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -50,5 +51,12 @@ public class StudentController {
         modelAndView.setViewName("students");
 
         return modelAndView;
+    }
+
+//    2. Save a Student
+    //http://localhost:8080/SpringMvc/students + GET request
+    @GetMapping("/new")
+    public String displayForm(@ModelAttribute("student") Student student) {
+        return "studentForm";
     }
 }

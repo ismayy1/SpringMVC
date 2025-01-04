@@ -8,7 +8,7 @@
 <%@ page isELIgnored="false" %>
 <meta charset="UTF-8">
 <title>Add Student</title>
-<link rel="stylesheet" href="${pageContext.request.contextPath}/statics/css/style.css?version=1">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/style.css?version=1">
 </head>
 <body>
 	<div class="container">
