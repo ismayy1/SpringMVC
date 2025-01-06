@@ -18,9 +18,10 @@ public class StudentService implements IService {
         return repository.findAll();
     }
 
+//    2B
     @Override
     public void saveOrUpdateStudent(Student student) {
-
+        repository.saveOrUpdate(student);
     }
 
     @Override

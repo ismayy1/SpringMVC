@@ -5,11 +5,11 @@ import com.tpe.service.IService;
 import com.tpe.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @Controller // we tell spring from our client can be received by this class.
@@ -53,10 +53,37 @@ public class StudentController {
         return modelAndView;
     }
 
-//    2. Save a Student
-    //http://localhost:8080/SpringMvc/students + GET request
+//    2 A. Save a Student - Send The Form
+    //http://localhost:8080/SpringMvc/students/new + GET request
     @GetMapping("/new")
     public String displayForm(@ModelAttribute("student") Student student) {
         return "studentForm";
     }
+
+
+//    2 B. Actually Save a Student
+    //http://localhost:8080/SpringMvc/students/saveStudent + POST request
+    @PostMapping("/saveStudent")
+    public String addStudent(@Valid @ModelAttribute("student") Student student, BindingResult bindingResult) {
+
+        if (bindingResult.hasErrors()) {
+            return "studentForm";
+        }
+
+        service.saveOrUpdateStudent(student);
+        return "redirect:/students";
+    }
+
+//    3 - Update an Existing Student
+    //http://localhost:8080/SpringMvc/students/update?id=1 + GET request
+    @GetMapping("/update")
+    public ModelAndView displayFormForUpdate(@RequestParam("id") Long id) {   // ("id") here is redundant. If there is only 1 query parameter, it will automatically get that. //The names of the object in the parameter, and the key in the query parameter doesn't have to match. We could say "Long identification" for example.
+
+    }
+
+
+//    4 - Delete an Existing Student
+    //http://localhost:8080/SpringMvc/students/delete/1 + POST request
+
+
 }
