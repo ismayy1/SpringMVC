@@ -17,6 +17,7 @@
 			<table>
 				<form:form modelAttribute="student" action="saveStudent" method="post">
 					<form:hidden path="id" />
+					<form:hidden path="createDate" />
 					<tr>
 						<td class="studentprop"><b>FirstName:</b></td>
 						<td><form:input path="firstName" size="30" /></td>

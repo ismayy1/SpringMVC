@@ -41,11 +41,22 @@ public class StudentRepository implements IRepository {
 
     @Override
     public void delete(Student student) {
+        Session session = sessionFactory.openSession();
+        Transaction transaction = session.beginTransaction();
 
+        session.delete(student);
+
+        transaction.commit();
+        session.close();
     }
 
     @Override
     public Optional<Student> findById(Long id) {
-        return Optional.empty();
+        Session session = sessionFactory.openSession();
+        Student foundStudent = session.get(Student.class, id);
+        Optional<Student> optionalStudent = Optional.ofNullable(foundStudent);
+
+        session.close();
+        return optionalStudent;
     }
 }

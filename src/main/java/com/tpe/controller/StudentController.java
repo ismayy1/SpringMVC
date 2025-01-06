@@ -1,8 +1,8 @@
 package com.tpe.controller;
 
 import com.tpe.domain.Student;
+import com.tpe.exception.StudentNotFoundException;
 import com.tpe.service.IService;
-import com.tpe.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
@@ -70,6 +70,8 @@ public class StudentController {
             return "studentForm";
         }
 
+//        System.out.println(student.getCreateDate());
+
         service.saveOrUpdateStudent(student);
         return "redirect:/students";
     }
@@ -77,13 +79,32 @@ public class StudentController {
 //    3 - Update an Existing Student
     //http://localhost:8080/SpringMvc/students/update?id=1 + GET request
     @GetMapping("/update")
-    public ModelAndView displayFormForUpdate(@RequestParam("id") Long id) {   // ("id") here is redundant. If there is only 1 query parameter, it will automatically get that. //The names of the object in the parameter, and the key in the query parameter doesn't have to match. We could say "Long identification" for example.
+    public ModelAndView displayFormForUpdate(@RequestParam("id") Long identity) {   // ("id") here is redundant. If there is only 1 query parameter, it will automatically get that. //The names of the object in the parameter, and the key in the query parameter doesn't have to match. We could say "Long identification" for example.
+        Student foundStudent = service.findStudentById(identity);
 
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.addObject("student", foundStudent);
+        modelAndView.setViewName("studentForm");
+
+        return modelAndView;
     }
 
 
 //    4 - Delete an Existing Student
-    //http://localhost:8080/SpringMvc/students/delete/1 + POST request
+    //http://localhost:8080/SpringMvc/students/delete/1 + GET request
+    @GetMapping("/delete/{id}")
+    public String deleteStudent(@PathVariable("id") Long identity) {
+        service.deleteStudent(identity);
+        return "redirect:/students";
+    }
 
+    @ExceptionHandler(StudentNotFoundException.class)
+    public ModelAndView showNotFoundPage(StudentNotFoundException e) {
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.addObject("message", e.getMessage());
+        modelAndView.setViewName("notFound");
 
+        return modelAndView;
+
+    }
 }
